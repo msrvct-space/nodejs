@@ -3,6 +3,6 @@ on:
   - push
   - workflow_dispatch
 jobs:
-  rust:
+  nodejs:
     uses: ./.github/workflows/nodejs.yml
     secrets: inherit
