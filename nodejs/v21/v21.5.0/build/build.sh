@@ -38,7 +38,7 @@ function get_install_tool() {
 
 function get_nodejs_package(){
     VERSION=$1
-    NAME="nodejs"
+    NAME="node"
     FULL_NAME="nodejs"
     PACK_TYPE="pkg"
     WORK_PATH=${BASE_PATH}/${PACK_TYPE}
