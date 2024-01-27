@@ -1,0 +1,21 @@
+name: nodejs v21.5.0
+on:
+  - workflow_call
+  - workflow_dispatch
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Login to GitHub Container Registry
+        run: echo "${{ secrets.WORKFLOW }}" | docker login https://ghcr.io -u ${{ github.repository_owner }} --password-stdin
+      - name: Build NodeJS Package
+        env:
+          NAME: nodejs
+          ARCH: linux/amd64,linux/arm64
+          VERSION: "v21.5.0"
+        working-directory: nodejs/v21/v21.5.0
+        run: |
+          docker buildx create --name mybuilder --driver docker-container --bootstrap
+          docker buildx use mybuilder
+          docker buildx build --push --platform ${ARCH} -t ghcr.io/${GITHUB_REPOSITORY}:$VERSION .

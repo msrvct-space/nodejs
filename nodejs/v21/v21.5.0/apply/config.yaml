@@ -1,0 +1,27 @@
+# name: golang
+# version: 1.21.5
+common:
+  file: msrvct.yaml
+  path: /etc/msrvct
+scripts:
+  pre_script:
+    - pre_script.sh
+  post_script:
+    - post_script.sh
+variables:
+  # global
+  # global_base_path: /workspaces/msrvct-exec/debug/nodejs/v21.5.0
+packages:
+  - name: nodejs
+    version: v21.5.0
+    documents:
+      - name: node-v21.5.0-linux-x64.tar.xz
+        type: pkg
+        sub_dir: node-v21.5.0-linux-x64
+        path_mode: 0755
+        file_mode: 0755
+      - name: nodejs.env
+        type: env
+        template: true
+        path_mode: 0755
+        file_mode: 0755
